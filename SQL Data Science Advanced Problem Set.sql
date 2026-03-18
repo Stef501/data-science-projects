@@ -1,4 +1,4 @@
--- 10-Advanced Data Science SQL Problems
+--10 Advanced Data Science SQL Problems
 
 -- Create Tables
 CREATE TABLE users (
@@ -232,4 +232,22 @@ from
 	from events)
 group by user_id;
 
---Q.10 
+--Q10. Define churn as: no activity for 30 days
+--Find users whose last event was more than 30 days ago.
+
+--Method 1
+select * from
+	(Select user_id, max(event_date) as last_activity_date
+	from events
+	group by user_id)
+where last_activity_date < now() - interval '30 days'
+order by user_id
+
+--Method 2
+select * from
+	(Select u.user_id, max(e.event_date) as last_activity_date
+	from users u
+	left join events e on u.user_id=e.user_id
+	group by u.user_id)
+where last_activity_date < now() - interval '30 days'
+order by user_id
