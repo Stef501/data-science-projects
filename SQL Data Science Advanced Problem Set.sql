@@ -164,7 +164,7 @@ select date, sum(active_users) over(order by date rows 6 preceding) as rolling_a
 from
 (select event_date as date, count(distinct(user_id)) as active_users
 	from events
-	group by event_date) t
+	group by event_date) t;
 	
 --Q6. Find users in the top 10% of activity based on number of events.
 
@@ -226,5 +226,10 @@ FROM (
 
 --Q9. Calculate the average number of days between events for each user
 
+select user_id, avg(days_between_events)::float as avg_days_between_events
+from
+	(select user_id, event_date-lag(event_date) over(partition by user_id order by event_date) as days_between_events
+	from events)
+group by user_id;
 
---
+--Q.10 
