@@ -1,4 +1,4 @@
---10 Advanced Data Science SQL Problems
+-- 10-Advanced Data Science SQL Problems
 
 -- Create Tables
 CREATE TABLE users (
