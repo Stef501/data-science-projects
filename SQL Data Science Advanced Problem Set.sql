@@ -1,6 +1,6 @@
 --10 Advanced Data Science SQL Problems
--- Create Tables
 
+-- Create Tables
 CREATE TABLE users (
     user_id INT PRIMARY KEY,
     signup_date DATE,
