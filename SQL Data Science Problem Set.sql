@@ -102,5 +102,3 @@ group by u.user_id,u.signup_date;
 select purchase_date as date, revenue,
 	sum(revenue) over(order by purchase_date rows 6 preceding) as rolling_7d_revenue
 	from purchases;
-
---10 Advanced SQL Data Science Problems
